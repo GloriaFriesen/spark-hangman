@@ -1,0 +1,27 @@
+<!--start.vtl-->
+  <h1>Hangman</h1>
+  <h4>Pick a difficulty</h4>
+  <form action="/start" method="post">
+    <div class="form-group">
+      <div class="radio">
+        <label>
+          <input type="radio" name="difficulty" value="0" checked>
+          Easy
+        </label>
+      </div>
+      <div class="radio">
+        <label>
+          <input type="radio" name="difficulty" value="1">
+          Medium
+        </label>
+      </div>
+      <div class="radio">
+        <label>
+          <input type="radio" name="difficulty" value="2">
+          Hard
+        </label>
+      </div>
+    </div>
+    <button type="submit" class="btn">Start Game</button>
+  </form>
+<!--start.vtl-->
