@@ -24,7 +24,8 @@ public class App {
       Map<String, Object> model = new HashMap<String, Object>();
       Random rng = new Random();
       int difficulty = Integer.parseInt(request.queryParams("difficulty"));
-      Game newGame = new Game(difficulty, 0);
+      int wordCount = Game.getWordCount(difficulty);
+      Game newGame = new Game(difficulty, rng.nextInt(wordCount));
       request.session().attribute("newGame", newGame);
       model.put("newGame", request.session().attribute("newGame"));
       model.put("guessLimit", guessLimit);
@@ -39,14 +40,8 @@ public class App {
       String hiddenWord = newGame.getHiddenWord();
       int wrongGuesses = newGame.wrongGuesses();
       model.put("newGame", request.session().attribute("newGame"));
-      if (hiddenWord.indexOf('_') == -1) {
-        model.put("template", "templates/win.vtl");
-      } else if(wrongGuesses == guessLimit) {
-        model.put("template", "templates/lose.vtl");
-      } else {
-        model.put("guessLimit", guessLimit);
-        model.put("template", "templates/game.vtl");
-      }
+      model.put("guessLimit", guessLimit);
+      model.put("template", "templates/game.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 

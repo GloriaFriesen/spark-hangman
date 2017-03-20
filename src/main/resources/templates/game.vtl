@@ -1,17 +1,25 @@
 <!--game.vtl-->
-<h2>$newGame.getHiddenWord()</h2>
-<p>
-  $newGame.getLettersGuessed()
-</p>
-<p>
-  Wrong Guesses: $newGame.wrongGuesses()/$guessLimit
-</p>
+#if ($newGame.getHiddenWord().indexOf('_') == -1)
+  <h2>YOU WON</h2>
+  <a href="/">Return to home page</a>
+#elseif ($newGame.wrongGuesses() == $guessLimit)
+  <h2>YOU LOST</h2>
+  <a href="/">Return to home page</a>
+#else
+  <h2>$newGame.getHiddenWord()</h2>
+  <p>
+    $newGame.getLettersGuessed()
+  </p>
+  <p>
+    Wrong Guesses: $newGame.wrongGuesses()/$guessLimit
+  </p>
 
-<form action="/game">
-  <div class="form-group">
-    <label for="guess">Guess a letter</label>
-    <input id="guess" name="guess" class="form-control" type="text">
-  </div>
-  <button type="submit" class="btn">Guess</button>
-</form>
+  <form action="/game">
+    <div class="form-group">
+      <label for="guess">Guess a letter</label>
+      <input id="guess" name="guess" class="form-control" type="text">
+    </div>
+    <button type="submit" class="btn">Guess</button>
+  </form>
+#end
 <!--game.vtl-->
