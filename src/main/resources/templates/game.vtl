@@ -7,9 +7,11 @@
   <a href="/">Return to home page</a>
 #else
   <h2>$newGame.getHiddenWord()</h2>
-  <p>
-    $newGame.getLettersGuessed()
-  </p>
+  #foreach ($letter in $newGame.getLettersGuessed())
+    <p>
+      $letter
+    </p>
+  #end
   <p>
     Wrong Guesses: $newGame.wrongGuesses()/$guessLimit
   </p>
