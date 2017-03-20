@@ -3,9 +3,11 @@
   <h2>YOU WON</h2>
   <a href="/">Return to home page</a>
 #elseif ($newGame.wrongGuesses() == $guessLimit)
+  $newGame.getImage()
   <h2>YOU LOST</h2>
   <a href="/">Return to home page</a>
 #else
+  $newGame.getImage()
   <h2>$newGame.getHiddenWord()</h2>
   #foreach ($letter in $newGame.getLettersGuessed())
     <p>

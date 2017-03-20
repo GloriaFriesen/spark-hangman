@@ -24,8 +24,7 @@ public class App {
       Map<String, Object> model = new HashMap<String, Object>();
       Random rng = new Random();
       int difficulty = Integer.parseInt(request.queryParams("difficulty"));
-      int wordCount = Game.getWordCount(difficulty);
-      Game newGame = new Game(difficulty, rng.nextInt(wordCount));
+      Game newGame = new Game(difficulty, rng.nextInt(Game.getWordCount(difficulty)));
       request.session().attribute("newGame", newGame);
       model.put("newGame", request.session().attribute("newGame"));
       model.put("guessLimit", guessLimit);

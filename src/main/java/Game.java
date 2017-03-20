@@ -54,6 +54,10 @@ public class Game {
     return wrongGuessCount;
   }
 
+  public String getImage() {
+    return String.format("<img src='/images/%d.jpg'/>", wrongGuesses());
+  }
+
   public static int getWordCount(int difficulty) {
     return allWords[difficulty].length;
   }
