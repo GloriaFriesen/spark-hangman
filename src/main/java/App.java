@@ -20,7 +20,7 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-    post("/start", (request, response) -> {
+    get("/start", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
       Random rng = new Random();
       int difficulty = Integer.parseInt(request.queryParams("difficulty"));
@@ -36,9 +36,9 @@ public class App {
     get("/game", (request, response) -> {
       Game newGame = request.session().attribute("newGame");
       Map<String, Object> model = new HashMap<String, Object>();
-      newGame.guessLetter(request.queryParams("guess").charAt(0));
-      String hiddenWord = newGame.getHiddenWord();
-      int wrongGuesses = newGame.wrongGuesses();
+      if (request.queryParams("guess").length() == 1) {
+        newGame.guessLetter(request.queryParams("guess").charAt(0));
+      }
       model.put("newGame", request.session().attribute("newGame"));
       model.put("guessLimit", guessLimit);
       model.put("template", "templates/game.vtl");
